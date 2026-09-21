@@ -46,6 +46,7 @@ build-*/
 
 # CMake generated files
 CMakeFiles/
+cmake-build-*/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
@@ -67,3 +68,15 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+
+Debug/
+Release/
+x64/
+x86/
+
+*.sln.docstates

@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../lab01/lab1/lab1.vcxproj" />
+  <Project Path="AlgorithmsAndDataStructures/AlgorithmsAndDataStructures.vcxproj" />
+</Solution>
