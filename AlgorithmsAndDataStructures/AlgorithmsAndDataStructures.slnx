@@ -3,6 +3,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="../lab01/lab1/lab1.vcxproj" />
-  <Project Path="AlgorithmsAndDataStructures/AlgorithmsAndDataStructures.vcxproj" />
+  <Project Path="../lab01/lab1/lab1.vcxproj" Id="f20b4ea4-d90f-44d1-9060-4fffb0cfc852" />
+  <Project Path="../lab02/Project1/Project1.vcxproj" Id="95439d9a-a30c-4c77-9fb7-54bfd57ef1f1" />
+  <Project Path="AlgorithmsAndDataStructures/AlgorithmsAndDataStructures.vcxproj" Id="57c019dc-6ed7-47da-a346-8c40590576a4" />
 </Solution>
