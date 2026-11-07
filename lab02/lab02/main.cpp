@@ -1,17 +1,3 @@
- 
-// Лабораторная работа №2 — ПРОДВИНУТЫЙ УРОВЕНЬ (100 баллов)
-// Вариант 6: шаблонный контейнер PriorityQueue<T> на основе
-//            бинарной кучи (max-heap) + сравнение со std::priority_queue
-//
-// Реализовано:
-//   1. Анализ сложности фрагментов кода A..E (базовый уровень)
-//   2. Шаблонная функция average<T>                     
-//   3. Шаблонный класс Nullable<T>                      
-//   4. Шаблонный контейнер PriorityQueue<T>             
-//      Операции: push, pop, top, isEmpty, size
-//      Сравнение с std::priority_queue (таблица + замеры)
- 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -68,7 +54,7 @@ int exampleE(int n) {
 
  
 // ШАБЛОННАЯ ФУНКЦИЯ average<T>
-// Сложность O(n).
+// Сложность O(n)
  
 template <typename T>
 T average(T arr[], int n) {
@@ -80,7 +66,7 @@ T average(T arr[], int n) {
 
  
 // ШАБЛОННЫЙ КЛАСС Nullable<T>
-// Все операции O(1) (для T = string стоимость копирования O(len)).
+// Все операции O(1) (для T = string стоимость копирования O(len))
  
 template <typename T>
 class Nullable {
@@ -88,19 +74,19 @@ private:
     T value;
     bool hasValueFlag;
 public:
-    Nullable() : value(), hasValueFlag(false) {}
-    Nullable(const T& v) : value(v), hasValueFlag(true) {}
-    Nullable(const Nullable<T>& o) : value(o.value), hasValueFlag(o.hasValueFlag) {}
-    Nullable<T>& operator=(const Nullable<T>& o) {
+    Nullable() : value(), hasValueFlag(false) {}                                       // конструктор по умолчанию
+    Nullable(const T& v) : value(v), hasValueFlag(true) {}                            // со значением
+    Nullable(const Nullable<T>& o) : value(o.value), hasValueFlag(o.hasValueFlag) {} // копирования
+    Nullable<T>& operator=(const Nullable<T>& o) {                                  // оператор присваивания 
         if (this != &o) { value = o.value; hasValueFlag = o.hasValueFlag; }
         return *this;
     }
-    bool hasValue() const { return hasValueFlag; }
+    bool hasValue() const { return hasValueFlag; } // флаг
     T getValue() const {
         if (!hasValueFlag) throw runtime_error("Nullable: значение отсутствует");
         return value;
     }
-    void reset() { hasValueFlag = false; }
+    void reset() { hasValueFlag = false; } // сброс в пустое состояние
     void print() const {
         if (hasValueFlag) cout << "Nullable{ value = " << value << " }";
         else              cout << "Nullable{ empty }";
@@ -110,8 +96,8 @@ public:
  
 // ШАБЛОННЫЙ КОНТЕЙНЕР PriorityQueue<T>   
 //
-// Бинарная куча (max-heap) на std::vector.
-// Для T требуется operator< (для сравнения элементов).
+// Бинарная куча (max-heap) на vector
+// Для T требуется operator< (для сравнения элементов)
 //
 // Операции и их сложность:
 //   push(x)      — O(log n)   (sift-up после добавления)
@@ -137,8 +123,8 @@ private:
     int leftChild(int i) const { return 2 * i + 1; }
     int rightChild(int i) const { return 2 * i + 2; }
 
-    // Поднимаем элемент вверх, пока он больше родителя.
-    // В худшем случае — O(log n) шагов (высота кучи).
+    // Поднимаем элемент вверх, пока он больше родителя
+    // В худшем случае — O(log n) шагов (высота кучи)
     void siftUp(int i) {
         while (i > 0 && heap[parent(i)] < heap[i]) {
             swap(heap[parent(i)], heap[i]);
@@ -226,9 +212,9 @@ public:
  
 template <typename Func>
 long long measureTimeUs(Func func) {
-    auto start = high_resolution_clock::now();
+    auto start = high_resolution_clock::now();  // текущее время
     func();
-    auto end = high_resolution_clock::now();
+    auto end = high_resolution_clock::now();   // текущее время
     return duration_cast<microseconds>(end - start).count();
 }
 
@@ -285,7 +271,7 @@ int main() {
      
     // PriorityQueue<T>
      
-    cout << "--- 4. Демонстрация PriorityQueue<T> ---" << endl;
+    cout << "4. Демонстрация PriorityQueue<T>" << endl;
 
     PriorityQueue<int> pq;
     cout << "Изначально: isEmpty = " << (pq.isEmpty() ? "true" : "false")
@@ -391,8 +377,8 @@ int main() {
     cout << "  Разница во времени — это константа (кэш, аллокации, оптимизации STL)." << endl;
     cout << endl;
 
-    cout << "==============================================" << endl;
+    cout << "                                              " << endl;
     cout << " Программа успешно завершена." << endl;
-    cout << "==============================================" << endl;
+    cout << "                                              " << endl;
     return 0;
 }
