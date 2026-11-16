@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// БАЗОВЫЙ УРОВЕНЬ
 // Рекурсивная функция для вычисления факториала
 long long factorial(int n) {
     if (n <= 1) return 1; // Базовый случай
@@ -38,6 +39,7 @@ int fibIterative(int n) {
     return b;
 }
 
+// СРЕДНИЙ УРОВЕНЬ
 // Рекурсивный поиск максимума в массиве
 int findMaxRecursive(int arr[], int n) {
     if (n == 1) return arr[0]; // Базовый случай: один элемент
@@ -58,6 +60,7 @@ void hanoi(int n, char from, char to, char aux, int& moveCount) {
     hanoi(n - 1, aux, to, from, moveCount);
 }
 
+// ПРОДВИНУТЫЙ УРОВЕНЬ
 // Сортировка пузырьком с подсчетом сравнений и обменов
 void bubbleSort(int arr[], int n, int& comparisons, int& swaps) {
     comparisons = 0;
@@ -134,6 +137,7 @@ int main() {
 
     cout << "=== Лабораторная работа №6. Рекурсия и простые сортировки (Вариант 6) ===" << endl << endl;
 
+    // БАЗОВЫЙ УРОВЕНЬ
     // 1. Факториал
     cout << "1. Факториал числа:" << endl;
     int nFact = 5;
@@ -146,6 +150,7 @@ int main() {
     cout << "Рекурсивно: fib(" << nFib << ") = " << fibRecursive(nFib) << endl;
     cout << "Итеративно: fib(" << nFib << ") = " << fibIterative(nFib) << endl;
 
+    // СРЕДНИЙ УРОВЕНЬ
     // 3. Максимум в массиве
     cout << "\n3. Поиск максимума в массиве (рекурсивно):" << endl;
     int arrMax[] = { 3, 7, 2, 9, 5, 1, 8 };
@@ -160,6 +165,7 @@ int main() {
     hanoi(5, 'A', 'C', 'B', moveCount);
     cout << "Всего ходов: " << moveCount << endl;
 
+    // ПРОДВИНУТЫЙ УРОВЕНЬ
     // 5. Сортировки
     cout << "\n5. Простые сортировки (подсчет сравнений и обменов):" << endl;
     const int N = 10;

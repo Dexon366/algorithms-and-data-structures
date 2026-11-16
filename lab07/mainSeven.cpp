@@ -20,6 +20,8 @@ void mySwap(T& a, T& b, SortStats& stats) {
     stats.swaps++;
 }
 
+// ПРОДВИНУТЫЙ УРОВЕНЬ
+// 
 // Функция для выбора медианы из трёх и перемещения её в конец
 template <typename T>
 void medianOfThree(T arr[], int low, int high, SortStats& stats) {
@@ -77,6 +79,8 @@ void quickSort(T arr[], int n, SortStats& stats) {
     quickSortRecursive(arr, 0, n - 1, stats);
 }
 
+// БАЗОВЫЙ УРОВЕНЬ
+// 
 // Сортировка слиянием
 template <typename T>
 void merge(T arr[], int left, int mid, int right, SortStats& stats) {
@@ -162,6 +166,8 @@ void heapSort(T arr[], int n, SortStats& stats) {
     }
 }
 
+// ПРОДВИНУТЫЙ УРОВЕНЬ
+// 
 // Интроспективная сортировка (гибрид QuickSort + HeapSort)
 template <typename T>
 void introsortRecursive(T arr[], int low, int high, int depthLimit, SortStats& stats) {
@@ -206,6 +212,8 @@ T* copyArray(T arr[], int n) {
     return copy;
 }
 
+// СРЕДНИЙ + ПРОДВИНУТЫЙ УРОВЕНЬ
+// 
 // Шаблонная функция для тестирования сортировки
 template <typename T>
 void testSort(const string& name, void (*sortFunc)(T[], int, SortStats&), T original[], int n) {
@@ -269,6 +277,7 @@ int main() {
     printArray(tempArr, smallN);
     delete[] tempArr;
 
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: демонстрация IntroSort
     // 2. Сравнение на случайных массивах разного размера
     cout << "\n2. Сравнение производительности на случайных массивах:" << endl;
     int sizes[] = { 1000, 10000, 50000 };
@@ -281,14 +290,16 @@ int main() {
             randomArr[i] = rand() % 100000;
         }
 
-        testSort("QuickSort", quickSort<int>, randomArr, n);
-        testSort("MergeSort", mergeSort<int>, randomArr, n);
-        testSort("HeapSort", heapSort<int>, randomArr, n);
-        testSort("IntroSort", introSort<int>, randomArr, n);
+        testSort("QuickSort", quickSort<int>, randomArr, n); // ПРОДВИНУТЫЙ УРОВЕНЬ
+        testSort("MergeSort", mergeSort<int>, randomArr, n); // БАЗОВЫЙ УРОВЕНЬ
+        testSort("HeapSort", heapSort<int>, randomArr, n);   // БАЗОВЫЙ УРОВЕНЬ
+        testSort("IntroSort", introSort<int>, randomArr, n); // ПРОДВИНУТЫЙ УРОВЕНЬ
 
         delete[] randomArr;
     }
 
+    // ПРОДВИНУТЫЙ УРОВЕНЬ
+    // 
     // 3. Проверка на граничных случаях
     cout << "\n3. Проверка на граничных случаях:" << endl;
 

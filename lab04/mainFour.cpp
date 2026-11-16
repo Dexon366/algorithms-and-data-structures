@@ -6,6 +6,8 @@
 
 using namespace std;
 
+// БАЗОВЫЙ УРОВЕНЬ: шаблонный класс односвязного списка (SinglyLinkedList) + метод printEverySecond
+// 
 // Односвязный список
 template <typename T>
 class SinglyLinkedList {
@@ -21,6 +23,7 @@ private:
     int count;
 
 public:
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: итератор для односвязного списка
     // Итератор для односвязного списка
     class Iterator {
     private:
@@ -33,6 +36,7 @@ public:
         bool operator!=(const Iterator& other) const { return ptr != other.ptr; }
     };
 
+    // begin()/end() для итераторов
     Iterator begin() { return Iterator(head); }
     Iterator end() { return Iterator(nullptr); }
 
@@ -143,7 +147,7 @@ public:
     int size() const { return count; }
     bool empty() const { return head == nullptr; }
 
-    // Сериализация (Вариант 6, продвинутый уровень)
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: сериализация односвязного списка
     void saveToFile(const string& filename) const {
         ofstream file(filename);
         if (!file.is_open()) throw runtime_error("Не удалось открыть файл для записи");
@@ -171,6 +175,9 @@ public:
     }
 };
 
+
+// СРЕДНИЙ УРОВЕНЬ: шаблонный класс двусвязного списка (DoublyLinkedList) + метод rotateLeft
+//
 // Двусвязный список
 template <typename T>
 class DoublyLinkedList {
@@ -187,7 +194,7 @@ private:
     int count;
 
 public:
-    // Итератор для двусвязного списка
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: итератор для двусвязного списка
     class Iterator {
     private:
         DNode* ptr;
@@ -199,6 +206,7 @@ public:
         bool operator!=(const Iterator& other) const { return ptr != other.ptr; }
     };
 
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: begin()/end()
     Iterator begin() { return Iterator(head); }
     Iterator end() { return Iterator(nullptr); }
 
@@ -318,7 +326,7 @@ public:
     int size() const { return count; }
     bool empty() const { return head == nullptr; }
 
-    // Сериализация (Вариант 6, продвинутый уровень)
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: сериализация двусвязного списка
     void saveToFile(const string& filename) const {
         ofstream file(filename);
         if (!file.is_open()) throw runtime_error("Не удалось открыть файл для записи");
@@ -354,7 +362,7 @@ int main() {
 
     cout << "=== Лабораторная работа №4. Списки (Вариант 6, продвинутый уровень) ===" << endl << endl;
 
-    // 1. Односвязный список
+    // БАЗОВЫЙ УРОВЕНЬ: демонстрация односвязного списка + printEverySecond
     cout << "1. Односвязный список:" << endl;
     SinglyLinkedList<int> sList;
     sList.push_back(10);
@@ -369,7 +377,7 @@ int main() {
 
     cout << "Размер: " << sList.size() << endl;
 
-    // 2. Двусвязный список и сдвиг
+    // СРЕДНИЙ УРОВЕНЬ: демонстрация rotateLeft на двусвязном списке
     cout << "\n2. Двусвязный список (rotateLeft):" << endl;
     DoublyLinkedList<int> dList;
     for (int i = 1; i <= 5; ++i) dList.push_back(i * 10);
@@ -384,7 +392,7 @@ int main() {
     cout << "После сдвига влево на 3 (rotateLeft(3)): ";
     dList.print();
 
-    // 3. Сериализация
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: сериализация (сохранение и загрузка)
     cout << "\n3. Сериализация (сохранение и загрузка):" << endl;
     string filename = "list_data.txt";
     dList.saveToFile(filename);
@@ -409,7 +417,7 @@ int main() {
     }
     cout << endl;
 
-    // 5. Сравнение производительности
+    // ПРОДВИНУТЫЙ УРОВЕНЬ: сравнение производительности
     cout << "\n5. Сравнение производительности (вставка в начало 10000 элементов):" << endl;
 
     auto start = chrono::high_resolution_clock::now();
@@ -426,7 +434,7 @@ int main() {
     chrono::duration<double, milli> dTime = end - start;
     cout << "Двусвязный список (push_front): " << dTime.count() << " мс" << endl;
 
-    // Обработка исключений
+    // БАЗОВЫЙ УРОВЕНЬ: обработка исключений (проверка pop_front на пустом)
     cout << "\n6. Проверка обработки исключений:" << endl;
     try {
         SinglyLinkedList<int> emptyList;
